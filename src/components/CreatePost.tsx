@@ -8,6 +8,7 @@ import { Textarea } from './ui/textarea'
 import { Button } from './ui/button'
 import { createPost } from '@/actions/post.action'
 import toast from 'react-hot-toast'
+import ImageUpload from './ImageUpload'
 
 const CreatePost = () => {
   const {user} = useUser()
@@ -21,7 +22,7 @@ const CreatePost = () => {
     setIsPosting(true)
     try {
       const result = await createPost(content,imageUrl)
-      if(result.success){
+      if(result?.success){
         setContent("")
         setImageUrl("")
         setShowImageUpload(false)
@@ -51,7 +52,7 @@ const CreatePost = () => {
             />
           </div>
 
-          {/* {(showImageUpload || imageUrl) && (
+          {(showImageUpload || imageUrl) && (
             <div className="border rounded-lg p-4">
               <ImageUpload
                 endpoint="postImage"
@@ -62,7 +63,7 @@ const CreatePost = () => {
                 }}
               />
             </div>
-          )} */}
+          )}
 
           <div className="flex items-center justify-between border-t pt-4">
             <div className="flex space-x-2">
